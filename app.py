@@ -1,14 +1,17 @@
 from flask import Flask
 from backend.models import db
 from werkzeug.security import generate_password_hash
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 app = None
 
 
 def setup_app():
     app  = Flask(__name__)
-    app.secret_key = 'Job_finder'
+    app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
     app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///Jobfinder.sqlite3" #Having db file
     db.init_app(app) #Flask app connected to db(SQL alchemy)
     app.app_context().push() #Direct access to other modules
@@ -28,7 +31,7 @@ if __name__ == "__main__":
         user = User.query.filter_by(role = "admin").first()
         # Admin created only once
         if user is None:
-            user = User(email = "admin04@gmail.com", password = generate_password_hash("Admin@"), role = "admin")
+            user = User(email = os.getenv("ADMIN_EMAIL"), password = generate_password_hash(os.getenv("ADMIN_PASSWORD")), role = os.getenv("ROLE"))
             db.session.add(user)
             db.session.commit()
     app.run()
