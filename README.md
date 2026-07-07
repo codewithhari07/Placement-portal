@@ -1,6 +1,8 @@
 # Placement Portal Application
 
 A role-based **Flask web application** for managing campus placement activities including companies, students, placement drives, and job applications.
+ 
+**Deploy link**: https://placement-portal-vsf8.onrender.com/
 
 ---
 
