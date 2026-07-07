@@ -1,0 +1,36 @@
+{% extends "index_base.html" %}
+{% block content %}
+
+    <h1 class="text-center text-white"> Connecting Talents With Right Companies</h1>
+
+    <p class="text-center text-white">We make it easy to find your dream jobs - regardless of your location.</p>
+    <p class="text-center text-white">Browse over 100+ jobs from top companies to fast - growing startups. </p>
+
+    <div class="container border border-3 bg-white fs-5" style="width: 500px; height: 450px; margin-top: 2rem;">
+        <div class="head" style="margin-top: 1rem; border: 2px solid white; background-color: #0b1c16;">
+            <h3 class="d-flex justify-content-center" style="font-size: 2rem; font-weight: bolder; color: aliceblue;">
+                Login Here</h3>
+        </div>
+        <form action="/login" method="POST">
+            <div class="mb-5" style="margin-top: 50px;">
+                <label for="Email1" class="form-label">Email address</label>
+                <input type="email" class="form-control " id="Email1" name="Email" aria-describedby="emailHelp"
+                    style="height: 3rem;">
+
+            </div>
+            <div class="mb-5 ">
+                <label for="Password1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password1" name="Password" style="height: 3rem;">
+            </div>
+
+            <div class="btn"></div>
+            <button type="submit" class="btn btn-primary fs-5 " style="height: 2.9rem; width: 6rem; margin-left: 10rem;">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endblock %}
+    

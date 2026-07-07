@@ -1,0 +1,57 @@
+{% extends "Student/student_base.html"%}
+{% block content %}
+
+
+<div class="container fs-5" style="background-color: white; width: 700px; height: auto;">
+    <div class="form-box">
+
+        <span><a href="{{url_for("student_home")}}" class="btn btn-outline-dark fs-5">
+                Back</a></span>
+
+        <h3 class="text-center fw-bold">Student Application History</h3>
+
+        <div class="mt-3">
+            <h5 class="section-title">Student Name</h5>
+            <p class="text-muted">{{student.fullname}}</p>
+
+            <h5 class="section-title">Student Name</h5>
+            <p class="text-muted">{{student.qualification}}</p>
+        </div>
+        {% if applications %}
+        <table class="table table-bordered fs-5">
+            <thead>
+                <tr>
+                    <th scope="col">Sr no.</th>
+                    <th scope="col">Drive No.</th>
+
+                    <th scope="col">Company Name</th>
+
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Interview</th>
+
+                    <th scope="col">Result</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in applications %}
+                <tr>
+                    <td scope="row">{{loop.index}}</td>
+                    <td>{{a.placement_drive.drive_name}}</td>
+                    <td>{{a.placement_drive.company_profile.company_name}}</td>
+                    <td>{{a.placement_drive.job_title}}</td>
+                    <td>In-person</td>
+                    <td>{{a.status}}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        {% else %}
+        <p class="text-white">No company register yet......</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

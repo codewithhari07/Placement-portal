@@ -1,0 +1,61 @@
+{% extends "Company/company_base.html" %}
+{% block content %}
+
+{% if drives %}
+
+    <div class="container border border-3 bg-white fs-5" style="width: 800px; height: 480px; margin-top: 2rem;">
+        <div class="head" style="margin-top: 1rem; border: 2px solid white; background-color: #0b1c16;">
+            <h3 class="d-flex justify-content-center" style="font-size: 2rem; font-weight: bolder; color: aliceblue;">
+                Edit a {{drives.drive_name}}</h3>
+        </div>
+        <form action="#" method = "POST">
+            <div class="row mb-3" style="margin-top: 30px;">
+                <div class="col">
+                    <label for="drivename" class="form-label">Drive Name</label>
+                    <input type="text" class="form-control " id="drivename" name="Drivename" value="{{drives.drive_name}}"
+                         style="height: 3rem;" readonly>
+                </div>
+
+                <div class="col">
+                    <label for="jtitle" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" id="jtitle" name="Jtitle"
+                         style="height: 3rem;" value="{{drives.job_title}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="jdesc" class="form-label">Job Description</label>
+                    <input type="text" class="form-control" id="jdesc" name="Jdesc" value="{{drives.job_desc}}"
+                        style="height: 3rem;" >
+                </div>
+                <div class="col">
+                    <label for="criteria" class="form-label">Eligibility Criteria</label>
+                    <input type="text" class="form-control" id="criteria" name="Criteria" value="{{drives.eligibility_criteria}}"
+                        style="height: 3rem;">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="deadline" class="form-label">Application Deadline</label>
+                    <input type="date" class="form-control" id="deadline" name="Deadline"
+                        value="{{drives.application_deadline}}" style="height: 3rem;">
+                </div>
+                <div class="col">
+                    <label for="salary" class="form-label">Salary</label>
+                    <input type="text" class="form-control" id="salary" name="Salary"
+                        value="{{drives.salary}}" style="height: 3rem;">
+                </div>
+            </div>
+        
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-outline-success fs-5">Update</button>
+                <a href="{{url_for("company_home")}}" type="submit" class="btn btn-outline-danger fs-5">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+{% endif %}
+{% endblock %}

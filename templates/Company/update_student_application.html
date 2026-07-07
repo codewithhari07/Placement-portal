@@ -1,0 +1,109 @@
+{% extends "Company/company_base.html" %}
+{% block content %}
+
+<div class="container mt-5 fs-5">
+    <div class="card shadow-lg p-4">
+
+        <h3 class="text-center mb-4">Student Application Review</h3>
+
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <div class="mb-3">
+                    <label class="fw-bold">Student Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.fullname }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Qualification</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.qualification }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">College Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.college_name }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Drive Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.placement_drive.drive_name }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Job Title</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.placement_drive.job_title }}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-5 border-start ps-4">
+
+                <label class=" fw-bold fs-5">Update Status</label>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <select name="status" class="form-select fs-5">
+                            <option value="Applied"
+                                {% if applications.status == "Applied" %}selected{% endif %}>
+                                Applied
+                            </option>
+
+                            <option value="Shortlisted"
+                                {% if applications.status == "Shortlisted" %}selected{% endif %}>
+                                Shortlisted
+                            </option>
+
+                            <option value="Selected"
+                                {% if applications.status == "Selected" %}selected{% endif %}>
+                                Selected
+                            </option>
+
+                            <option value="Rejected"
+                                {% if applications.status == "Rejected" %}selected{% endif %}>
+                                Rejected
+                            </option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 fs-5">
+                        Save Changes
+                    </button>
+
+                </form>
+
+                <hr>
+
+                {% if applications.student_profile.resume %}
+                <a href="{{ url_for('static', filename = 'resumes/' ~ applications.student_profile.resume) }}"
+                    class="btn btn-md btn-outline-primary w-100 mb-2 fs-5" target="_blank">
+                    View Resume
+                </a>
+                {% endif %}
+
+
+                <a href="{{url_for("view_application_by_company", id = applications.placement_drive.id)}}"
+                   class="btn btn-outline-dark w-100 fs-5">
+                    Go Back
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

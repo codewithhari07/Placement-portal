@@ -1,0 +1,98 @@
+{% extends "Admin/admin_base.html" %}
+{% block content %}
+
+
+<div class="container mt-5 fs-5" style="border: none;">
+    <div class="card shadow-lg p-4">
+
+        <h3 class="text-center mb-4">Student Application Review</h3>
+        {% if applications %}
+        <div class="row">
+
+
+            <div class="col-md-7">
+
+                <div class="mb-3">
+                    <label class="fw-bold">Student Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.fullname }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Gender</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{applications.student_profile.gender}}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Qualification</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.qualification }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">College Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.student_profile.college_name }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Contact Number</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{applications.student_profile.contact_no}}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Company Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{applications.placement_drive.company_profile.company_name}}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Drive Name</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.placement_drive.drive_name }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="fw-bold">Job Title</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.placement_drive.job_title }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fw-bold">Application Status</label>
+                    <div class="border rounded p-2 bg-light">
+                        {{ applications.status }}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-5 border-start ps-4">
+
+                {% if applications.student_profile.resume %}
+                <a href="{{ url_for('static', filename = 'resumes/' ~ applications.student_profile.resume) }}"
+                    class="btn btn-md btn-outline-primary w-100 mb-2 fs-5" target="_blank">
+                    View Resume
+                </a>
+                {% endif %}
+
+                <a href="{{url_for("student_applied", id=applications.student_profile.id)}}"
+                    class="btn btn-outline-dark w-100 fs-5">
+                    Go Back
+                </a>
+
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

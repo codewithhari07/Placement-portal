@@ -1,0 +1,212 @@
+{% extends "Admin/admin_base.html" %}
+{% block content %}
+
+
+<div class="container" style="border: none;">
+    <div class="row">
+        <div class="col">
+            <div class="card bg-primary" style="width:300px">
+                <div class="card-body text-white">
+                    <h4 class="card-title">Total Companies</h4>
+                    <p class="card-text">{{total_company}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+            <div class="card bg-success" style="width:300px">
+                <div class="card-body text-white">
+                    <h4 class="card-title">Total Drives</h4>
+                    <p class="card-text">{{total_drive}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card bg-info" style="width:300px">
+                <div class="card-body text-white">
+                    <h4 class="card-title">Total Students</h4>
+                    <p class="card-text">{{total_student}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card bg-secondary" style="width:300px">
+                <div class="card-body text-white">
+                    <h4 class="card-title">Total Applications</h4>
+                    <p class="card-text">{{total_application}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- REGISTERED COMPANY -->
+
+<div class="container fs-5">
+    <span><b>Registered Companies</b></span>
+    {% if companies %}
+    <table class="table table-bordered fs-5">
+        <thead>
+            <tr>
+                <th scope="col">Sr no.</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">HR contact</th>
+                <th scope="col">Field</th>
+                <th scope="col">Type</th>
+                <th scope="col">Website</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for c in companies %}
+            <tr>
+                <td scope="row">{{loop.index}}</td>
+                <td>{{c.company_name}}</td>
+                <td>{{c.Hr_contact}}</td>
+                <td>{{c.company_field}}</td>
+                <td>{{c.company_type}}</td>
+                <td>{{c.website}}</td>
+                <td>
+                    {% if c.approval_status == "pending" %}
+                    <a href="{{url_for('company_approve', id = c.id) }}" class="btn btn-outline-success fs-5">Approve</a>
+
+                    <a href="{{url_for('company_reject', id = c.id) }}" class="btn btn-outline-danger fs-5">Reject</a>
+
+                    <button class="btn btn-outline-secondary fs-5" disabled>Block</button>
+
+                    {% elif c.approval_status == "Approved" %}
+                    <button class="btn btn-outline-secondary fs-5" disabled> Approved</button>
+                    <button class="btn btn-outline-danger fs-5" disabled>Reject</button>
+                    <a href="{{url_for('company_blacklist', id = c.id) }}" class="btn  {% if c.is_blacklisted %}btn-outline-success{% else %}btn-outline-dark{% endif %} fs-5">
+                        {% if c.is_blacklisted %}Unblock{% else %}Block{% endif %}
+                    </a>
+                
+
+                    {% else %}
+
+                    <button class="btn btn-outline-secondary fs-5" disabled> Approve</button>
+                    <button class="btn btn-outline-danger fs-5" disabled>Rejected</button>
+                    <button class="btn btn-outline-dark fs-5" disabled>Block</button>
+                    {% endif %}
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+    {% else %}
+    <p class="text-white">No company register yet......</p>
+    {% endif %}
+</div>
+
+
+<!-- RIGISTERED STUDENTS -->
+
+<div class="container fs-5">
+    <span><b>Registered Students</b></span>
+    {% if students %}
+    <table class="table table-bordered fs-5">
+        <thead>
+            <tr>
+                <th scope="col">Sr no.</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">College/University Name</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col">Skills</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td scope="row">{{loop.index}}</td>
+                <td>{{s.fullname}}</td>
+                <td>{{s.age}}</td>
+                <td>{{s.gender}}</td>
+                <td>{{s.qualification}}</td>
+                <td>{{s.college_name}}</td>
+                <td>{{s.contact_no}}</td>
+                <td>{{s.skill}}</td>
+                <td>
+                    <a href="{{ url_for('student_blacklist', id = s.id)}}" type="button"
+                        class="btn {% if s.is_blacklisted %}btn-outline-success{% else %}btn-outline-danger{% endif %} fs-5">
+                        {% if s.is_blacklisted %}Unblock{% else %}Block{% endif %}
+                    </a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% else %}
+    <p class="text-white">No student register yet......</p>
+    {% endif %}
+</div>
+
+<!-- COMPANY APPLICATIONS -->
+
+<div class="container fs-5">
+    <span><b>Company Applications</b></span>
+    {% if drives %}
+    <table class="table table-bordered fs-5">
+        <thead>
+            <tr>
+                <th scope="col">Sr no.</th>
+                <th scope="col">Drive Name</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Job Description</th>
+                <th scope="col">Eligibility Criteria</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Application Deadline</th>
+
+                <th scope="col">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in drives %}
+            <tr>
+                <td scope='row'>{{loop.index}}</td>
+                <td>{{d.drive_name}}</td>
+                <td>{{d.company_profile.company_name}}</td>
+                <td>{{d.job_title}}</td>
+                <td>{{d.job_desc}}</td>
+                <td>{{d.eligibility_criteria}}</td>
+                <td>{{d.salary}}</td>
+                <td>{{d.application_deadline}}</td>
+
+                <td>
+                    {% if d.status != "Approved" %}
+                    <a href="{{url_for('company_drive', id = d.id) }}" class="btn btn-outline-success fs-5">Approve</a>
+                    {% else %}
+                    <button class="btn btn-outline-secondary fs-5" disabled> Approved</button>
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% else %}
+    <p class="text-white">No Drive Created yet......</p>
+    {% endif %}
+</div>
+
+{% endblock %}

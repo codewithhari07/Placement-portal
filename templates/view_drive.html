@@ -1,0 +1,87 @@
+{% extends "Admin/admin_base.html" %}
+{% block content %}
+
+<div class="container fs-5" style="background-color: white; width: 560px;">
+    <div class="form-box">
+        <h3 class="text-center mb-4 fw-bold">{{drives.drive_name}} Details</h3>
+        {% if drives %}
+        <div class="details-card shadow-sm">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-7">
+                    <p> <strong>Job Title</strong></p>
+
+                    <p>{{drives.job_title}}</p>
+
+                    <p><strong>Job Description</strong></p>
+                    <p>
+                        {{drives.job_desc}}
+                    </p>
+
+                    <p><strong>Salary</strong></p>
+                    <p>{{drives.salary}}</p>
+                    <p><strong>Eligibility Criteria</strong></p>
+                    <p>{{drives.eligibility_criteria}}</p>
+                </div>
+
+                <div class="col-md-5 text-center">
+                    <p> <strong>Company Name</strong></p>
+
+                    <h1 class="text-secondary">{{drives.company_profile.company_name}}</h1>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-3">
+                <!-- Admin View -->
+                {% if role == "admin" %}
+
+                <a href="{{url_for("ongoing_drives")}}" class="btn btn-outline-danger back-btn fs-5">
+                    Go Back
+                </a>
+                {% endif %}
+
+                <!-- Student View -->
+                 <div class="d-flex justify-content-between">
+                {% if role == "student" %}
+                
+
+                {% if status == "Applied" %}
+
+                <button class="btn btn-success fs-5" disabled>Already Applied</button>
+
+                {% elif status == "Shortlisted" %}
+                <button class="btn btn-success fs-5" disabled>Already Applied</button>
+
+                {% elif status == "Selected" %}
+                <button class="btn btn-success fs-5" disabled>Already Applied</button>
+
+                {% elif status == "Rejected" %}
+                <button class="btn btn-success fs-5" disabled>Already Applied</button>
+
+
+                {% else %}
+                <form action="{{ url_for('job_apply', id = drives.id) }}" method="POST">
+                    <button type="submit" class="btn btn-outline-primary fs-5">Apply Now</button>
+                </form>
+                {% endif %}
+
+                <a href="{{url_for("view_company", id=drives.company_profile.id)}}"
+                    class="btn btn-outline-danger back-btn fs-5">
+                    Go Back
+                </a>
+               
+                {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

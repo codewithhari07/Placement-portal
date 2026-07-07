@@ -1,0 +1,45 @@
+{% extends "Admin/admin_base.html" %}
+
+{% block content %}
+
+    <!-- ONGOING DRIVES -->
+
+    <div class="container fs-5">
+        <span><b>Ongoing Drives</b></span>
+        {% if drives %}
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th scope="col">Sr no.</th>
+                    <th scope="col">Company Name</th>
+
+                    <th scope="col">Drive Name</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Action</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for dr in drives %}
+                <tr>
+                    <td scope='row'>{{loop.index}}</td>
+                    <td>{{dr.company_profile.company_name}}</td>
+                    <td>{{dr.drive_name}}</td>
+                    <td>{{dr.job_title}}</td>
+                    <td>
+                        <a href="{{url_for("view_drive", id = dr.id)}}" type="button" class="btn btn-outline-primary fs-5">View Details</a>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+        {% else %}
+        <p class="text-white">No Ongoing Drive yet......</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

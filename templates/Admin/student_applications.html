@@ -1,0 +1,43 @@
+{% extends "Admin/admin_base.html"%}
+{% block content %}
+
+<!-- STUDENT APPLICATIONS -->
+
+<div class="container fs-5">
+    <span><b>Student Applications</b></span>
+    {% if applications %}
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th scope="col">Sr no.</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Drive</th>
+                <th scope="col">Company</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in applications %}
+            <tr>
+                <td scope='row'>{{loop.index}}</td>
+                <td>{{a.student_profile.fullname}}</td>
+                <td>{{a.placement_drive.drive_name}}</td>
+                <td>{{a.placement_drive.company_profile.company_name}}</td>
+                <td>{{a.created_at.date()}}</td>
+                <td>
+                    <a href="{{url_for("student_details", id = a.id)}}" type="button" class="btn btn-outline-primary fs-5">View</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    {% else %}
+    <p class="text-white">No student applied yet....</p>
+    {% endif %}
+</div>
+
+{% endblock %}

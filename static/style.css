@@ -1,0 +1,18 @@
+.box-section{
+  display: flex;
+  justify-content: space-evenly;
+    
+}
+.box{
+ 
+  height: 200px;
+  width: 20%;
+  border: 2px solid white;
+  color: white;
+  background-color: white;
+}
+.box-img{
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

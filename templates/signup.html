@@ -1,0 +1,93 @@
+{% extends "index_base.html" %}
+{% block content %}
+
+    <h1 class="text-center text-white"> Connecting Talents With Right Companies</h1>
+
+    <p class="text-center text-white">We make it easy to find your dream jobs - regardless of your location.</p>
+    <p class="text-center text-white">Browse over 100+ jobs from top companies to fast - growing startups. </p>
+
+    <div class="container border border-3 bg-white fs-5" style="width: 800px; height: 780px; margin-top: 2rem;">
+        <div class="head" style="margin-top: 1rem; border: 2px solid white; background-color: #0b1c16;">
+            <h3 class="d-flex justify-content-center" style="font-size: 2rem; font-weight: bolder; color: aliceblue;">
+                User Signup</h3>
+        </div>
+        <form action="/register" method="POST", enctype="multipart/form-data">
+            <div class="row mb-3" style="margin-top: 30px;">
+                <div class="col">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control " id="email" name="Email" placeholder="Enter email id"
+                        aria-describedby="emailHelp" style="height: 3rem;" required>
+                </div>
+
+                <div class="col">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="Password"
+                        placeholder="Enter strong password" style="height: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="full_name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="full_name" name="Fname" placeholder="Enter full name"
+                        style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control" id="age" name="Age" placeholder="Enter your Date of birth"
+                        style="height: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="gender" class="form-label">Gender</label>
+                    <input type="text" class="form-control" id="gender" name="Gender"
+                        placeholder="Enter your gender (eg. Male/ Female/ Other)" style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="edu" class="form-label">Qualification</label>
+                    <input type="text" class="form-control" id="edu" name="Edu"
+                        placeholder="Enter your education(eg. BS in Data Science)" style="height: 3rem;" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="college_name" class="form-label">College/University Name</label>
+                    <input type="text" class="form-control" id="college_name" name="College_name"
+                        placeholder="Enter your College/University name" style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="mobile_no" class="form-label">Mobile No.</label>
+                    <input type="number" class="form-control" id="mobile_no" name="M_no"
+                        placeholder="Enter your working number" style="height: 3rem;" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="skill" class="form-label">Skill</label>
+                    <input type="text" class="form-control" id="skill" name="Skill"
+                        placeholder="Ex. Python, HTML, CSS, etc." style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="work_status" class="form-label">Work Status</label>
+                    <input type="text" class="form-control" id="work_status" name="Work_status"
+                        placeholder="Ex. Fresher, Experience(month/year)" style="height: 3rem;" required>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <div class="col">
+                    <label for="resume" class="form-label">Resume</label>
+                    <input type="file" class="form-control" id="resume" name="Resume" style="height: 3rem;" accept=".pdf", required>
+                </div>
+
+            </div>
+
+            <div class="d-flex justify-content-center" style="margin-top: 35px; height: 3rem;">
+                <button type="submit" class="btn btn-outline-primary fw-bold fs-5">Signup</button>
+            </div>
+        </form>
+
+    </div>
+
+  {% endblock %}

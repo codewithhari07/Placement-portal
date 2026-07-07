@@ -1,0 +1,58 @@
+{% extends "Company/company_base.html" %}
+{% block content %}
+
+
+    <div class="container border border-3 bg-white" style="width: 800px; height: 480px; margin-top: 2rem;">
+        <div class="head" style="margin-top: 1rem; border: 2px solid white; background-color: #0b1c16;">
+            <h3 class="d-flex justify-content-center" style="font-size: 2rem; font-weight: bolder; color: aliceblue;">
+                Create a Drive</h3>
+        </div>
+        <form action="#" method = "POST">
+            <div class="row mb-3" style="margin-top: 30px;">
+                <div class="col">
+                    <label for="drivename" class="form-label">Drive Name</label>
+                    <input type="text" class="form-control " id="drivename" name="Drivename" placeholder="Ex. Drive 1, etc."
+                         style="height: 3rem;" required>
+                </div>
+
+                <div class="col">
+                    <label for="jtitle" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" id="jtitle" name="Jtitle"
+                        placeholder="Enter Job Title" style="height: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="jdesc" class="form-label">Job Description</label>
+                    <input type="text" class="form-control" id="jdesc" name="Jdesc" placeholder="Enter Job Description"
+                        style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="criteria" class="form-label">Eligibility Criteria</label>
+                    <input type="text" class="form-control" id="criteria" name="Criteria" placeholder="Enter Job Eligibility Criteria "
+                        style="height: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="deadline" class="form-label">Application Deadline</label>
+                    <input type="date" class="form-control" id="deadline" name="Deadline"
+                        placeholder="Enter Application Deadline" style="height: 3rem;" required>
+                </div>
+                <div class="col">
+                    <label for="salary" class="form-label">Salary</label>
+                    <input type="text" class="form-control" id="salary" name="Salary"
+                        placeholder="Enter salary" style="height: 3rem;" required>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-center" style="margin-top: 35px; height: 3rem;">
+                <button type="submit" class="btn btn-outline-primary fw-bold ">Create</button>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}
